@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; }
+        .chat-container { width: 100%; max-width: 600px; height: 90vh; background: white; display: flex; flex-direction: column; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .chat-box { flex: 1; padding: 20px; overflow-y: auto; border-bottom: 1px solid #ccc; display: flex; flex-direction: column; align-items: flex-end; }
+        .message { padding: 10px; margin: 5px 0; border-radius: 5px; max-width: 70%; }
+        .user { background: #ff4aaa; color: white; align-self: flex-end; text-align: right; }
+        .bot { background: #ddd; align-self: flex-start; }
+        .input-area { display: flex; padding: 10px; border-top: 1px solid #ccc; }
+        input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px; margin-left: 5px; background: #ff0090; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #b30074; }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox"></div>
+        <div class="input-area">
+            <input type="text" id="messageInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+ 
+        function sendMessage() {
+            /*const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (message === '') return;
+
+            const chatBox = document.getElementById('chatBox');
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user');
+            userMessage.textContent = message;
+            chatBox.appendChild(userMessage);
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;*/
+            getChatResponse()
+    
+        }
+        getFirstResponse()
+        var session_id=""
+        function getFirstResponse(){
+            fetch('http://{{server_ip}}:8000/chatbot/welcome/',{ method: 'GET' })
+            .then(response => {
+              if (!response.ok) { throw new Error('Network response was not ok'); }
+              return response.json()
+            })
+            .then(data => {
+              console.log(data)
+              const chatBox = document.getElementById('chatBox');
+              const userMessage = document.createElement('div');
+              userMessage.classList.add('message', 'bot');
+              userMessage.textContent = data.response;
+              session_id=data.session_id
+              chatBox.appendChild(userMessage);
+              chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch(error => {
+              console.error('fetch operation:', error);
+            });
+          }
+          function getChatResponse(){
+            //User Messages
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            const chatBox = document.getElementById('chatBox');
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user');
+            userMessage.textContent =message ;
+            chatBox.appendChild(userMessage);
+
+            data={"session_id":session_id,"message":message}
+            console.log(data)
+            fetch('http://{{server_ip}}:8000/chatbot/chat/',{ method: 'POST',headers:{'Content-Type': 'application/json'},body:JSON.stringify(data)})
+            .then(response => {
+              if (!response.ok) { throw new Error('Network response was not ok'); }
+              return response.json()
+            })
+            .then(data => {
+              console.log(data)
+              //Bot Response
+              const chatBox = document.getElementById('chatBox');
+              const userMessage = document.createElement('div');
+              userMessage.classList.add('message', 'bot');
+              userMessage.innerHTML = data.response;
+              chatBox.appendChild(userMessage);
+              input.value = '';
+              chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch(error => {
+              console.error('fetch operation:', error);
+            });
+          }
+    </script>
+</body>
+</html>
