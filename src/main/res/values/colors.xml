@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#E91E63</color> <!-- Primary color (e.g., Pink) -->
+    <color name="colorPrimaryDark">#D500F9</color> <!-- Darker shade of pink -->
+    <color name="colorAccent">#FF80AB</color> <!-- Accent color (lighter pink) -->
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="horizontal"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/tvPeriodDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PeriodDate:"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#000"/>
+    <TextView
+        android:id="@+id/tvCycleNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Period Cycle:"
+        android:textSize="18sp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/tvCycleLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Period Length:"
+        android:textSize="16sp"
+        android:textColor="#000000"/>
+
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:src="@drawable/period_icon" />
+
+</LinearLayout>

@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. Theme.Material3.DayNight.NoActionBar-->
+   <style name="Base.Theme.MenstrualApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+       <!--  Customize your light theme here.
+        <item name="colorPrimary">@color/my_light_primary</item>-->
+       <item name="colorPrimary">@color/colorPrimary</item>
+       <item name="colorOnPrimary">@color/white</item>
+       <item name="buttonStyle">@style/CustomButtonStyle</item>
+
+       <!-- Customize button style -->
+    </style>
+    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/rounded_button</item> <!-- Custom rounded button background -->
+        <item name="android:textColor">#FFFFFF</item> <!-- White text color -->
+        <item name="android:textSize">16sp</item> <!-- Text size -->
+        <item name="android:padding">5dp</item> <!-- Padding -->
+        <item name="android:elevation">4dp</item> <!-- Elevation/shadow -->
+    </style>
+
+    <style name="Theme.MenstrualApp" parent="Base.Theme.MenstrualApp" />
+</resources>
